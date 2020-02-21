@@ -1,7 +1,39 @@
+from django.contrib.auth import authenticate, login
+
+from .forms import SignUpForm
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 # Create your views here.
 def index(request):
     return HttpResponse("Hello World.")
+
+
+def home_view(request):
+    return render(request, 'main/home.html')
+
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        print(request.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            print('valid')
+            user = form.save()
+            user.refresh_from_db()
+            user.profile.first_name = form.cleaned_data.get('first_name')
+            user.profile.last_name = form.cleaned_data.get('last_name')
+            user.profile.email = form.cleaned_data.get('email')
+            user.save()
+            print(user)
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            print('login')
+            return redirect('/home')
+    else:
+        form = SignUpForm()
+    return render(request, 'main/signup_view.html', {'form': form})
