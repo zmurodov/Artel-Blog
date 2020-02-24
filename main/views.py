@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello World.")
+    return render(request, 'main/home.html', {})
 
 
 def home_view(request):
@@ -38,14 +38,26 @@ def signup_view(request):
     #     form = SignUpForm()
     # return render(request, 'main/signup_view.html', {'form': form})
     if request.method == 'POST':
-        pass
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            context = {
+                'name': name,
+                'email': email,
+                'password': password
+            }
+            return redirect('/home', context=context)
+        else:
+            return HttpResponse('form is invalid')
     else:
-        return render(request, 'main/sign_up.html', {})
+        form = SignUpForm()
+        return render(request, 'main/sign_up.html', {'form': form})
 
 
 def login_view(request):
     if request.method == 'POST':
-
         pass
     else:
         return render(request, 'main/login.html', {})

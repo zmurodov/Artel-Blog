@@ -9,18 +9,30 @@
     <meta name="keywords" content="Disqus, disqus.com, comments, blog, blogs, discussion">
     <meta name="google" value="notranslate"/>
     <title>
-        Sign-up to comment on Disqus
+        Sign-up to comment on Artel Blog
     </title>
 
     <meta name="description" content="Create an account and join the millions of commenters on Disqus.">
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}" type="text/css"/>
+    <style>
+        .signup{
+            padding: 90px 40px 50px;
+        }
+    </style>
 </head>
 <body class="" id="js-content">
 
 
 <section class="container--narrow signup">
-    <form id="login-form" action="" method="post" accept-charset="utf-8">
-        <input type='hidden' name='csrfmiddlewaretoken' value='G1ZF84SQN55oDayPYywyIC6If0ecR34P'/>
+    <form id="login-form" method="post" accept-charset="utf-8">
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field.errors }}
+            {{ hidden_field }}
+        {% endfor %}
 
         <div class="nav-tab">
             <div class="nav-tab__item is-active">
@@ -53,34 +65,39 @@
 
 
         <fieldset class="input-group">
-            <input id="display-name-input" type="text" name="display_name" tabindex="20"
-                   value=""
-                   placeholder="Name"
-                   required autofocus
-
-            >
-
-        </fieldset>
-
-        <fieldset class="input-group">
-            <input id="email-input" type="email" name="email" tabindex="21"
-                   value="" placeholder="Email" required
-
-            >
+            {#            <input id="display-name-input" type="text" name="display_name" tabindex="20"#}
+            {#                   value=""#}
+            {#                   placeholder="Name"#}
+            {#                   required autofocus#}
+            {##}
+            {#            >#}
+            {{ form.name }}
 
         </fieldset>
 
         <fieldset class="input-group">
-            <input id="password-input" type="password" name="password" tabindex="22"
-                   placeholder="Password" required
-
-            >
+            {#            <input id="email-input" type="email" name="email" tabindex="21"#}
+            {#                   value="" placeholder="Email" required#}
+            {##}
+            {#            >#}
+            {{ form.email }}
 
         </fieldset>
 
+        {#        <fieldset class="input-group">#}
+        {#            <input id="password-input" type="password" name="password" tabindex="22"#}
+        {#                   placeholder="Password" required#}
+        {#            >#}
+        {##}
+        {#        </fieldset>#}
+        <fieldset class="input-group">
+            {{ form.password.errors }}
+            {{ form.password }}
+        </fieldset>
 
         <div class="button-container spacing-bottom">
-            <button class="button submit" data-analytics="sign-in" tabindex="23">Signup<span class="spinner"></span>
+            <button class="button submit" type="submit" data-analytics="sign-in" tabindex="23">Signup<span
+                    class="spinner"></span>
             </button>
         </div>
     </form>
@@ -90,8 +107,8 @@
 
 <div class="text-center">
     <a href="/" class="logo" data-analytics="site logo">
-        <img src="//a.disquscdn.com/1581704280/img/disqus-logo-alt-hidpi.png" width="102" height="20" alt="Disqus"
-             title="Disqus - Discover your community" style="padding-bottom: 20px;"/>
+        <img src="{% static 'main/img/logo.png' %}" width="102" height="auto" alt="Disqus"
+             title="Disqus - Discover your community" style="padding-bottom: 10px;"/>
     </a>
 </div>
 
