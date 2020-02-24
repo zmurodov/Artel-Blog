@@ -15,25 +15,37 @@ def home_view(request):
 
 
 def signup_view(request):
+    # if request.method == 'POST':
+    #     form = SignUpForm(request.POST)
+    #     print(request.POST)
+    #     print(form.is_valid())
+    #     if form.is_valid():
+    #         print('valid')
+    #         user = form.save()
+    #         user.refresh_from_db()
+    #         user.profile.first_name = form.cleaned_data.get('first_name')
+    #         user.profile.last_name = form.cleaned_data.get('last_name')
+    #         user.profile.email = form.cleaned_data.get('email')
+    #         user.save()
+    #         print(user)
+    #         username = form.cleaned_data.get('username')
+    #         password = form.cleaned_data.get('password1')
+    #         user = authenticate(username=username, password=password)
+    #         login(request, user)
+    #         print('login')
+    #         return redirect('/home')
+    # else:
+    #     form = SignUpForm()
+    # return render(request, 'main/signup_view.html', {'form': form})
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        print(request.POST)
-        print(form.is_valid())
-        if form.is_valid():
-            print('valid')
-            user = form.save()
-            user.refresh_from_db()
-            user.profile.first_name = form.cleaned_data.get('first_name')
-            user.profile.last_name = form.cleaned_data.get('last_name')
-            user.profile.email = form.cleaned_data.get('email')
-            user.save()
-            print(user)
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            print('login')
-            return redirect('/home')
+        pass
     else:
-        form = SignUpForm()
-    return render(request, 'main/signup_view.html', {'form': form})
+        return render(request, 'main/sign_up.html', {})
+
+
+def login_view(request):
+    if request.method == 'POST':
+
+        pass
+    else:
+        return render(request, 'main/login.html', {})

@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <link rel="shortcut icon" href="//a.disquscdn.com/1581704280/img/favicon16-32.ico" type="image/vnd.microsoft.icon">
+
+
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="Content-Language" content="en-us">
+    <meta name="keywords" content="Disqus, disqus.com, comments, blog, blogs, discussion">
+    <meta name="google" value="notranslate"/>
+    <title>
+
+        Sign In - Disqus
+
+    </title>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" type="text/css"/>
+    <meta name="description"
+          content="Disqus is a global comment system that improves discussion on websites and connects conversations across the web.">
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body class="" id="">
+
+
+<section class="container--narrow login">
+    <form
+            id="login-form"
+            action="https://disqus.com/profile/login/?next=https%3A//disqus.com/&amp;"
+            method="post"
+            accept-charset="utf-8"
+            novalidate
+    >
+        <input type='hidden' name='csrfmiddlewaretoken' value='G1ZF84SQN55oDayPYywyIC6If0ecR34P'/>
+        <div class="nav-tab">
+            <a href="{% url 'sign_up' %}" class="nav-tab__item">
+                Signup
+            </a>
+            <div class="nav-tab__item is-active">
+                Login
+            </div>
+        </div>
+
+        <p class="text-center">Login to Disqus with your social media account, username, or email address</p>
+
+
+        <div class="social-login__wrapper">
+            <button title="facebook" type="button" class="social-button -facebook" data-service="facebook">
+                    <span class="auth-container">
+                        <img src="//a.disquscdn.com/1581704280/img/icons/facebook.svg" alt="Facebook">
+                    </span>
+            </button>
+            <button title="twitter" type="button" class="social-button -twitter" data-service="twitter">
+                    <span class="auth-container">
+                        <img src="//a.disquscdn.com/1581704280/img/icons/twitter.svg" alt="Twitter">
+                    </span>
+            </button>
+            <button title="google" type="button" class="social-button -google" data-service="google">
+                    <span class="auth-container">
+                        <img src="//a.disquscdn.com/1581704280/img/icons/google.svg" alt="Google">
+                    </span>
+            </button>
+        </div>
+
+
+        <fieldset class="input-group">
+            <input id="username-input" type="email" name="username" tabindex="20" value=""
+                   placeholder="Email or username" required autofocus>
+        </fieldset>
+
+        <fieldset class="input-group">
+            <input id="password-input" type="password" name="password" tabindex="21" placeholder="Password" required>
+        </fieldset>
+
+
+        <div class="button-container">
+            <button class="button submit" data-analytics="sign-in" tabindex="22">Login<span class="spinner"></span>
+            </button>
+        </div>
+
+        <div class="spacing-top">
+            <a href="https://disqus.com/forgot/">Forgot your password?</a>
+        </div>
+    </form>
+</section>
+
+
+<div class="text-center">
+    <a href="/" class="logo" data-analytics="site logo">
+        <img src="//a.disquscdn.com/1581704280/img/disqus-logo-alt-hidpi.png" width="102" height="20" alt="Disqus"
+             title="Disqus - Discover your community" style="padding-bottom: 20px;"/>
+    </a>
+</div>
+
+</body>
+</html>
